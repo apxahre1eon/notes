@@ -1,0 +1,44 @@
+version: "3"
+networks:
+  guacamole_back:
+    driver: bridge
+services:
+      
+  mariadb:
+    image: "mariadb"
+    networks:
+      - "guacamole_back"
+    container_name: "guacamole_mariadb"
+    restart: "unless-stopped"
+    environment:
+      MARIADB_DATABASE: "guacamole_db"
+      MARIADB_PASSWORD: "guacamole_pass"
+      MARIADB_ROOT_PASSWORD: "guacamole_pass"
+      MARIADB_USER: "guacamole_user"
+    volumes:
+      - "/docker_volume/mariadb_guacamole:/var/lib/mysql"
+
+  guacd:
+    container_name: "guacamole_guacd"
+    image: "guacamole/guacd"
+    networks:
+      - "guacamole_back"
+    restart: "unless-stopped"
+
+  guacamole:
+    container_name: "guacamole"
+    image: "guacamole/guacamole"
+    networks:
+      - "guacamole_back"
+    restart: "unless-stopped"
+    ports:
+      - "9440:8080"
+    environment:
+      GUACD_HOSTNAME: "guacamole_guacd"
+      MYSQL_HOSTNAME: "guacamole_mariadb"
+      MYSQL_DATABASE: "guacamole_db"
+      MYSQL_USER: "guacamole_user"
+      MYSQL_PASSWORD: "guacamole_pass"
+    depends_on:
+      - mariadb
+      - guacd
