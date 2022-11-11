@@ -47,7 +47,30 @@ services:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=zabbix
       - TZ=Europe/Moscow
-
     depends_on:
       - zabbix-mariadb
       - zabbix-server
+   
+  grafana:
+    container_name: grafana
+    restart: always
+    image: grafana/grafana
+    user: "1000"
+    ports:
+      - "9444:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - grafana-config:/etc/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+    depends_on:
+      - zabbix-mariadb
+      - zabbix-server
+      
+volumes:
+  grafana-data:
+    external: true
+  grafana-config:
+    external: true
