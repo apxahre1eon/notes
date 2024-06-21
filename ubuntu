@@ -1,0 +1,9 @@
+Чтобы новенький ubuntu server начал видеть сетевые устройства по их hostname
+надо sudo cp /etc/nsswitch.conf /etc/nsswitch.conf.back
+добавить в конце для строки
+sudo nano /etc/nsswitch.conf
+
+hosts: files dns wins
+
+sudo apt install winbind libnss-winbind
+sudo systemctl reboot
