@@ -7,3 +7,8 @@ hosts: files dns wins
 
 sudo apt install winbind libnss-winbind
 sudo systemctl reboot
+
+
+# Изменение размера раздела в не LVM на горячую без размонтирования. Где 1 номер раздела
+sudo growpart /dev/vda 1
+sudo resize2fs /dev/vda1  
