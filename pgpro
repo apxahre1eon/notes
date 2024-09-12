@@ -1,0 +1,6 @@
+Для установки https://postgrespro.com/products/download/postgrespro/latest
+Путь pg_hba.conf /var/lib/pgpro/std-16/data/pg_hba.conf
+Путь до postgresql.conf /var/lib/pgpro/std-16/data/postgresql.conf
+
+
+Подбор конфигурации под железо pgTune https://pgtune.leopard.in.ua/
