@@ -1,0 +1,10 @@
+# Установка в debian 12 через snap
+sudo apt install snapd
+sudo snap install snapd
+sudo snap install v2raya
+
+# Путь до geosite.dat и geoip.dat
+# /var/snap/v2raya/current/geoip
+
+wget -O /var/snap/v2raya/current/geoip/geosite.dat https://github.com/1andrevich/antifilter-domain/releases/latest/download/geosite.dat
+wget -O /var/snap/v2raya/current/geoip/geoip.dat https://github.com/1andrevich/antifilter-geoip/releases/latest/download/geoip.dat
