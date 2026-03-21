@@ -9,6 +9,14 @@
 *ytimg.com
 *googleapis.com
 
+# Telegram
+*.t.me
+*.telegram.me
+*.telegram.org
+*.nicegram.app
+*.telesco.pe
+*.tg.dev
+
 # Facebook & Instagram
 *cdnfacebook.com
 *ig.me
