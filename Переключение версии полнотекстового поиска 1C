@@ -3,3 +3,18 @@
 
 Обязательно должен стоять JRE на сервере 1C
 apt install openjdk-17-jre-headless -y
+
+# Получаем чистый путь
+readlink -f $(which java) | sed 's/\/bin\/java//'
+
+sudo -u usr1cv8 env | grep JAVA
+
+если в env пользователя 1с JAVA_HOME отсутствует, то попробуйте добавить его в srv1cv8-8.3.*.*@default.service
+sudo systemctl edit srv1cv8
+[Service]
+Environment="JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64"
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/jvm/java-17-openjdk-amd64/bin"
+
+
+sudo systemctl daemon-reload
+sudo systemctl restart srv1cv8
